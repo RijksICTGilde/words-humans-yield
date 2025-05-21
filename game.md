@@ -2,7 +2,9 @@
 
 ## Spelconcept
 
-Een interactieve workshop waarin deelnemers zelf een Large Language Model (LLM) spelen om te leren hoe AI-taalmodellen werken. Spelers vormen samen een neuraal netwerk dat tekst voorspelt, waardoor ze inzicht krijgen in de werking van neurale netwerken, training versus inference, en hoe taalmodellen leren van data.
+Een interactieve workshop waarin deelnemers zelf een Large Language Model (LLM) spelen om te leren hoe AI-taalmodellen
+werken. Spelers vormen samen een neuraal netwerk dat tekst voorspelt, waardoor ze inzicht krijgen in de werking van
+neurale netwerken, training versus inference, en hoe taalmodellen leren van data.
 
 **Tijdsduur:** 75 minuten **Spelers:** 10-25 personen
 
@@ -104,7 +106,8 @@ Zie <https://claude.ai/public/artifacts/d60b1f6d-d31d-4429-b19a-d18423cd0e77>
 | Netwerk-beheerders       | 1            | 2            | Houden alle gewichten bij en helpen bij berekeningen |
 | Spelleiders              | 1            | 2            | Leggen uit, houden tijd bij, faciliteren discussie   |
 
-*Opmerking: Bij minder dan 13 spelers kunnen rollen worden gecombineerd, bijvoorbeeld input-processors en trainingsdata-providers, of backpropagation-trainers en netwerk-beheerders.*
+*Opmerking: Bij minder dan 13 spelers kunnen rollen worden gecombineerd, bijvoorbeeld input-processors en
+trainingsdata-providers, of backpropagation-trainers en netwerk-beheerders.*
 
 ## Instructiekaarten
 
@@ -439,3 +442,16 @@ TIP: Houd het tempo hoog, maar neem tijd voor leermomenten. Zorg voor een goede 
     * Vat de belangrijkste leerpunten samen
     * Vergelijk met de schaal van echte LLMs (miljarden parameters)
     * Wijs op de beperkingen van het model en hoe echte LLMs anders werken
+
+## Technische Specificatie
+
+Het geïmplementeerde model is een discrete feed-forward MLP met binaire stap-activatiefunctie (Heaviside),
+gestructureerd als 20-5-5-10 architectuur zonder bias-termen die directe, heuristische gewichtsaanpassingen gebruikt in
+plaats van gradiëntgebaseerde backpropagation. Conceptueel volgt het Rosenblatt's perceptron-principes (1958) met
+McCulloch-Pitts neuronen en representeert tekst via een bag-of-words benadering zonder sequentiële informatie. De
+simplistische gewichtsaanpassing omzeilt differentieerbare functies en stocastische gradiëntafdaling die in moderne
+netwerken gebruikelijk zijn (Rumelhart et al., 1986). Cruciale limitaties omvatten het ontbreken van contextuele
+verbanden (versus Transformers; Vaswani et al., 2017), parameter-efficiënte backpropagation, en regularisatietechnieken
+zoals gewichtsverval of dropout (Srivastava et al., 2014), wat het model gevoelig maakt voor overfitting zoals
+gedemonstreerd in de simulatieresultaten. Voor moderne NLP-implementaties, zie Jurafsky & Martin (web.stanford.edu/~
+jurafsky/slp3), en voor visuele neurale netwerkdemonstraties: playground.tensorflow.org.
