@@ -1,457 +1,451 @@
 # Words Humans Yield game
 
-## Spelconcept
+## Game Concept
 
-Een interactieve workshop waarin deelnemers zelf een Large Language Model (LLM) spelen om te leren hoe AI-taalmodellen
-werken. Spelers vormen samen een neuraal netwerk dat tekst voorspelt, waardoor ze inzicht krijgen in de werking van
-neurale netwerken, training versus inference, en hoe taalmodellen leren van data.
+An interactive workshop where participants play the role of a Large Language Model (LLM) to learn how AI language models
+work. Players collectively form a neural network that predicts text, giving them insight into how neural networks
+function, the difference between training and inference, and how language models learn from data.
 
-**Tijdsduur:** 75 minuten **Spelers:** 10-25 personen
+**Duration:** 75 minutes **Players:** 10-25 people
 
-## Leerdoelen
+## Learning Objectives
 
-* Begrijpen hoe een neuraal netwerk werkt op basaal niveau
-* Onderscheid tussen trainen en inference
-* Inzicht in gewichten en backpropagation
-* Belang van trainingsdata
-* Evaluatie van modelperformance
+- Understanding how a neural network works at a basic level
+- Distinguishing between training and inference
+- Insight into weights and backpropagation
+- Importance of training data
+- Evaluation of model performance
 
-## Benodigdheden
+## Materials Needed
 
-### Kernmaterialen
+### Core Materials
 
-* 20 input woordkaarten (A5-formaat)
-* 10 output woordkaarten (A5-formaat)
-* 250 gewichtenkaartjes (getallen van -5 tot +5, meerdere van elk)
-* 175 verbindingskoorden (touwtjes van 1-2 meter, verschillende kleuren)
-* 20 rolkaarten met instructies
-* 10 trainingsdata-kaarten met voorbeeldzinnen
-* 1 groot whiteboard of flipchart voor netwerkstatus en scores
+- 20 input word cards (A5-format)
+- 10 output word cards (A5-format)
+- 250 weight cards (numbers from -5 to +5, multiple of each)
+- 175 connection cords (strings of 1-2 meters, different colors)
+- 20 role cards with instructions
+- 10 training data cards with example sentences
+- 1 large whiteboard or flipchart for network status and scores
 
-### Aanvullende materialen
+### Additional Materials
 
-* Groene en rode stippen (om actieve/inactieve status van input woorden aan te duiden)
-* Kleine whiteboards of clipboards met papier voor berekeningen
-* Plakband of tape om verbindingen vast te maken
-* Standaards om woordkaartjes rechtop te plaatsen
-* Naamstickers voor deelnemers
-* Markeerstiften en pennen
-* Klembord voor de evaluator
+- Green and red dots (to indicate active/inactive status of input words)
+- Small whiteboards or clipboards with paper for calculations
+- Adhesive tape to secure connections
+- Stands to place word cards upright
+- Name stickers for participants
+- Markers and pens
+- Clipboard for the evaluator
 
-## Vocabulaire
+## Vocabulary
 
-### Input Vocabulaire (20 woorden)
+### Input Vocabulary (20 words)
 
-1. de
-2. het
-3. een
-4. op
+1. he
+2. the
+3. a
+4. on
 5. in
-6. onder
-7. naast
-8. kat
-9. hond
-10. kind
+6. under
+7. next to
+8. cat
+9. dog
+10. child
 11. plant
-12. auto
-13. zit
-14. staat
-15. ligt
-16. speelt
-17. loopt
-18. groot
-19. klein
-20. rood
+12. car
+13. sits
+14. stands
+15. lies
+16. plays
+17. walks
+18. big
+19. small
+20. red
 
-### Output Vocabulaire (10 woorden)
+### Output Vocabulary (10 words)
 
 1. mat
-2. tafel
-3. stoel
-4. vloer
-5. deur
-6. tuin
-7. boek
-8. bal
-9. kast
+2. table
+3. chair
+4. floor
+5. door
+6. garden
+7. book
+8. ball
+9. cabinet
 10. lamp
 
-## Netwerkarchitectuur
+## Network Architecture
 
-* **Input laag:** 20 woordkaartjes met verbindingen naar VL1
-* **Verborgen Laag 1 (VL1):** 3-5 neuronen (menselijke spelers)
-* **Verborgen Laag 2 (VL2):** 3-5 neuronen (menselijke spelers)
-* **Output laag:** 10 woordkaartjes met verbindingen naar VL2
+- **Input layer:** 20 word cards with connections to HL1
+- **Hidden Layer 1 (HL1):** 3-5 neurons (human players)
+- **Hidden Layer 2 (HL2):** 3-5 neurons (human players)
+- **Output layer:** 10 word cards with connections to HL2
 
-Het netwerk is **fully connected**, wat betekent dat:
+The network is **fully connected**, which means that:
 
-* Elk input woord is verbonden (met draden) met ALLE neuronen in Verborgen Laag 1
-* Elk neuron in Verborgen Laag 1 is verbonden met ALLE neuronen in Verborgen Laag 2
-* Elk neuron in Verborgen Laag 2 is verbonden met ALLE output woorden
+- Every input word is connected (with strings) to ALL neurons in Hidden Layer 1
+- Every neuron in Hidden Layer 1 is connected to ALL neurons in Hidden Layer 2
+- Every neuron in Hidden Layer 2 is connected to ALL output words
 
-Zie <https://claude.ai/public/artifacts/d60b1f6d-d31d-4429-b19a-d18423cd0e77>
+<img src="words-humans-yield.svg" width="800" alt="Words Humans Yield Network">
 
-## Rolverdeling (10-25 spelers)
+## Role Distribution (10-25 players)
 
-|                          |              |              |                                                      |
-| ------------------------ | ------------ | ------------ | ---------------------------------------------------- |
-| Rol                      | Min. spelers | Max. spelers | Beschrijving                                         |
-| Input-processors         | 1            | 2            | Activeren inputwoorden op basis van trainingszinnen  |
-| Verborgen Laag 1         | 3            | 5            | Verwerken signalen van de inputlaag                  |
-| Verborgen Laag 2         | 3            | 5            | Verwerken signalen van Verborgen Laag 1              |
-| Output-processors        | 1            | 2            | Berekenen scores voor outputwoorden                  |
-| Trainingsdata-providers  | 1            | 2            | Leveren voorbeeldzinnen                              |
-| Evaluatoren              | 1            | 1            | Beoordelen voorspellingen en houden scores bij       |
-| Backpropagation-trainers | 1            | 2            | Passen gewichten aan na foute voorspellingen         |
-| Netwerk-beheerders       | 1            | 2            | Houden alle gewichten bij en helpen bij berekeningen |
-| Spelleiders              | 1            | 2            | Leggen uit, houden tijd bij, faciliteren discussie   |
+| Role                     | Min. players | Max. players | Description                                          |
+|--------------------------|--------------|--------------|------------------------------------------------------|
+| Input processors         | 1            | 2            | Activate input words based on training sentences     |
+| Hidden Layer 1           | 3            | 5            | Process signals from the input layer                 |
+| Hidden Layer 2           | 3            | 5            | Process signals from Hidden Layer 1                  |
+| Output processors        | 1            | 2            | Calculate scores for output words                    |
+| Training data providers  | 1            | 2            | Provide example sentences                            |
+| Evaluators               | 1            | 1            | Assess predictions and keep score                    |
+| Backpropagation trainers | 1            | 2            | Adjust weights after incorrect predictions           |
+| Network managers         | 1            | 2            | Keep track of all weights and help with calculations |
+| Game leaders             | 1            | 2            | Explain, keep time, facilitate discussion            |
 
-*Opmerking: Bij minder dan 13 spelers kunnen rollen worden gecombineerd, bijvoorbeeld input-processors en
-trainingsdata-providers, of backpropagation-trainers en netwerk-beheerders.*
+*Note: With fewer than 13 players, roles can be combined, for example input processors and training data providers, or
+backpropagation trainers and network managers.*
 
-## Instructiekaarten
+## Instruction Cards
 
-### Input-processor
+### Input Processor
 
-```javascript
-ROL: INPUT-PROCESSOR
+```text
+ROLE: INPUT PROCESSOR
 
-Je taak is het activeren van de juiste inputwoorden op basis van de trainingszinnen.
+Your task is to activate the appropriate input words based on the training sentences.
 
-INSTRUCTIES:
-1. Luister naar de zin van de trainingsdata-provider
-2. Identificeer welke woorden uit het input-vocabulaire voorkomen in de zin
-3. Markeer deze woordkaartjes als ACTIEF (1) met een groene stip
-4. Alle andere woordkaartjes blijven INACTIEF (0) (geen stip)
-5. Kondig duidelijk aan welke woorden actief zijn:
-   "De volgende woorden zijn actief: [woord1], [woord2]..."
-6. Zorg dat alle verborgen laag 1 neuronen kunnen zien welke inputwoorden actief zijn
+INSTRUCTIONS:
+1. Listen to the sentence from the training data provider
+2. Identify which words from the input vocabulary appear in the sentence
+3. Mark these word cards as ACTIVE (1) with a green dot
+4. All other word cards remain INACTIVE (0) (no dot)
+5. Clearly announce which words are active:
+   "The following words are active: [word1], [word2]..."
+6. Make sure all hidden layer 1 neurons can see which input words are active
 
-VOORBEELD:
-Bij de zin "De kat zit op de mat":
-- Actieve woorden: "de", "kat", "zit", "op"
-- Inactieve woorden: alle andere
+EXAMPLE:
+For the sentence "The cat sits on the mat":
+- Active words: "the", "cat", "sits", "on"
+- Inactive words: all others
 
-Voor elke nieuwe trainingszin: Zet eerst alle woorden terug naar inactief (0).
+For each new training sentence: First reset all words to inactive (0).
 ```
 
-### Verborgen Laag 1 Neuron
+### Hidden Layer 1 Neuron
 
-```javascript
-ROL: VERBORGEN LAAG 1 NEURON
+```text
+ROLE: HIDDEN LAYER 1 NEURON
 
-Je bent een verwerkingsneuron in de eerste verborgen laag van het netwerk.
+You are a processing neuron in the first hidden layer of the network.
 
-INSTRUCTIES:
-1. Ontvang signalen van alle ACTIEVE input woorden waarmee je verbonden bent
-2. Voor elk actief woord:
-   a. Noteer het gewicht op de verbinding tussen jou en dat woord
-   b. Vermenigvuldig de activatie (altijd 1) met dat gewicht
-3. Tel al deze gewogen signalen op
-4. Als je totale som > 0: Je bent ACTIEF (1)
-   Als je totale som ≤ 0: Je bent INACTIEF (0)
-5. Toon je status (ACTIEF/INACTIEF) met een groene of rode kaart
-6. Kondig je status aan: "Verborgen Neuron 1-[X] is [actief/inactief]"
-7. Stuur je activatie door naar alle neuronen in Verborgen Laag 2
+INSTRUCTIONS:
+1. Receive signals from all ACTIVE input words you are connected to
+2. For each active word:
+   a. Note the weight on the connection between you and that word
+   b. Multiply the activation (always 1) by that weight
+3. Sum up all these weighted signals
+4. If your total sum > 0: You are ACTIVE (1)
+   If your total sum ≤ 0: You are INACTIVE (0)
+5. Show your status (ACTIVE/INACTIVE) with a green or red card
+6. Announce your status: "Hidden Neuron 1-[X] is [active/inactive]"
+7. Send your activation to all neurons in Hidden Layer 2
 
-Gebruik het whiteboard om je berekening te laten zien:
-Input woord 1 (1) × gewicht (+2) = +2
-Input woord 2 (1) × gewicht (-1) = -1
+Use the whiteboard to show your calculation:
+Input word 1 (1) × weight (+2) = +2
+Input word 2 (1) × weight (-1) = -1
 ...
-Totaal: +1 → ACTIEF (1)
+Total: +1 → ACTIVE (1)
 ```
 
-### Verborgen Laag 2 Neuron
+### Hidden Layer 2 Neuron
 
-```javascript
-ROL: VERBORGEN LAAG 2 NEURON
+```text
+ROLE: HIDDEN LAYER 2 NEURON
 
-Je bent een verwerkingsneuron in de tweede verborgen laag van het netwerk.
+You are a processing neuron in the second hidden layer of the network.
 
-INSTRUCTIES:
-1. Ontvang signalen van alle ACTIEVE neuronen in Verborgen Laag 1
-2. Voor elk actief VL1-neuron:
-   a. Noteer het gewicht op de verbinding tussen jou en dat neuron
-   b. Vermenigvuldig de activatie (altijd 1) met dat gewicht
-3. Tel al deze gewogen signalen op
-4. Als je totale som > 0: Je bent ACTIEF (1)
-   Als je totale som ≤ 0: Je bent INACTIEF (0)
-5. Toon je status (ACTIEF/INACTIEF) met een groene of rode kaart
-6. Kondig je status aan: "Verborgen Neuron 2-[X] is [actief/inactief]"
-7. Stuur je activatie door naar de output-laag
+INSTRUCTIONS:
+1. Receive signals from all ACTIVE neurons in Hidden Layer 1
+2. For each active HL1 neuron:
+   a. Note the weight on the connection between you and that neuron
+   b. Multiply the activation (always 1) by that weight
+3. Sum up all these weighted signals
+4. If your total sum > 0: You are ACTIVE (1)
+   If your total sum ≤ 0: You are INACTIVE (0)
+5. Show your status (ACTIVE/INACTIVE) with a green or red card
+6. Announce your status: "Hidden Neuron 2-[X] is [active/inactive]"
+7. Send your activation to the output layer
 
-Gebruik het whiteboard om je berekening te laten zien:
-VL1-Neuron 1 (1) × gewicht (+3) = +3
-VL1-Neuron 2 (0) × gewicht (+1) = 0
+Use the whiteboard to show your calculation:
+HL1 Neuron 1 (1) × weight (+3) = +3
+HL1 Neuron 2 (0) × weight (+1) = 0
 ...
-Totaal: +3 → ACTIEF (1)
+Total: +3 → ACTIVE (1)
 ```
 
-### Output-processor
+### Output Processor
 
-```javascript
-ROL: OUTPUT-PROCESSOR
+```text
+ROLE: OUTPUT PROCESSOR
 
-Je berekent voorspellingsscores voor outputwoorden op basis van signalen van Verborgen Laag 2.
+You calculate prediction scores for output words based on signals from Hidden Layer 2.
 
-INSTRUCTIES:
-1. Wacht tot de Verborgen Laag 2 neuronen hun activaties hebben doorgegeven
-2. Voor elk outputwoord, bereken de totale score:
-   a. Kijk welke VL2-neuronen ACTIEF zijn (waarde 1)
-   b. Voor elk actief VL2-neuron, noteer het gewicht naar het outputwoord
-   c. Tel alle gewichten van actieve VL2-neuronen op
-3. Schrijf de totaalscore naast elk outputwoord
-4. Identificeer het outputwoord met de hoogste score
-5. Kondig duidelijk aan: "Het netwerk voorspelt het woord: [outputwoord] met score [score]"
-6. Bij gelijke hoogste scores, kies het woord dat alfabetisch eerst komt
+INSTRUCTIONS:
+1. Wait until the Hidden Layer 2 neurons have passed on their activations
+2. For each output word, calculate the total score:
+   a. Check which HL2 neurons are ACTIVE (value 1)
+   b. For each active HL2 neuron, note the weight to the output word
+   c. Sum up all weights from active HL2 neurons
+3. Write the total score next to each output word
+4. Identify the output word with the highest score
+5. Clearly announce: "The network predicts the word: [output word] with score [score]"
+6. In case of equal highest scores, choose the word that comes first alphabetically
 
-VOORBEELD:
-"mat": VL2-1(1)×(+3) + VL2-2(0)×(+1) + VL2-3(1)×(-2) = +1
-"tafel": VL2-1(1)×(-1) + VL2-2(0)×(+4) + VL2-3(1)×(+5) = +4
-Voorspelling: "tafel" met score +4
+EXAMPLE:
+"mat": HL2-1(1)×(+3) + HL2-2(0)×(+1) + HL2-3(1)×(-2) = +1
+"table": HL2-1(1)×(-1) + HL2-2(0)×(+4) + HL2-3(1)×(+5) = +4
+Prediction: "table" with score +4
 ```
 
-### Trainingsdata-provider
+### Training Data Provider
 
-```javascript
-ROL: TRAININGSDATA-PROVIDER
+```text
+ROLE: TRAINING DATA PROVIDER
 
-Je levert voorbeeldzinnen om het netwerk te trainen of te testen.
+You provide example sentences to train or test the network.
 
-INSTRUCTIES:
-1. Kies een trainingskaart met een onvolledige zin
-2. Kondig aan: "Nieuwe trainingsronde" (of "Nieuwe testfase" tijdens inference)
-3. Lees de zin duidelijk voor, zonder het laatste woord te onthullen
-   Bijv. "De kat zit op de ___"
-4. Wacht tot de input-processors alle actieve woorden hebben gemarkeerd
-5. Wacht tot het model een voorspelling heeft gemaakt
-6. Onthul het correcte antwoord: "Het juiste antwoord is: [woord]"
-7. Geef het resultaat door aan de evaluator
+INSTRUCTIONS:
+1. Choose a training card with an incomplete sentence
+2. Announce: "New training round" (or "New test phase" during inference)
+3. Read the sentence clearly, without revealing the last word
+   E.g. "The cat sits on the ___"
+4. Wait until the input processors have marked all active words
+5. Wait until the model has made a prediction
+6. Reveal the correct answer: "The correct answer is: [word]"
+7. Pass the result to the evaluator
 
-TIP: Tijdens de trainingsfase, begin met eenvoudige zinnen waarbij het patroon duidelijk is.
-Tijdens de testfase, kun je variëren om te testen of het netwerk heeft gegeneraliseerd.
+TIP: During the training phase, start with simple sentences where the pattern is clear.
+During the test phase, you can vary to test if the network has generalized.
 ```
 
 ### Evaluator
 
-```javascript
-ROL: EVALUATOR
+```text
+ROLE: EVALUATOR
 
-Je beoordeelt hoe goed het netwerk presteert en houdt de scores bij.
+You assess how well the network performs and keep track of scores.
 
-INSTRUCTIES:
-1. Luister naar de voorspelling van de output-processor
-2. Vergelijk deze met het correcte antwoord van de trainingsdata-provider
-3. Bepaal of de voorspelling correct is
-4. Kondig het resultaat aan: "De voorspelling is [CORRECT/INCORRECT]"
-5. Houd de scores bij op het scorebord:
-   a. Noteer de trainingszin (bijv. "De kat zit op de ___")
-   b. Noteer het voorspelde woord
-   c. Noteer het correcte woord
-   d. Markeer als correct (✓) of incorrect (✗)
-6. Bij incorrecte voorspellingen, geef een seintje aan de backpropagation-trainers
-   om de gewichten aan te passen
+INSTRUCTIONS:
+1. Listen to the prediction from the output processor
+2. Compare it with the correct answer from the training data provider
+3. Determine if the prediction is correct
+4. Announce the result: "The prediction is [CORRECT/INCORRECT]"
+5. Keep track of scores on the scoreboard:
+   a. Note the training sentence (e.g. "The cat sits on the ___")
+   b. Note the predicted word
+   c. Note the correct word
+   d. Mark as correct (✓) or incorrect (✗)
+6. For incorrect predictions, signal the backpropagation trainers
+   to adjust the weights
 
-TIP: Na meerdere trainingsronden, houd je ook de totaalscore bij:
-"Het netwerk presteert nu [X] uit [Y] correct ([Z]%)."
+TIP: After multiple training rounds, also keep track of the total score:
+"The network now performs [X] out of [Y] correctly ([Z]%)."
 ```
 
-### Backpropagation-trainer
+### Backpropagation Trainer
 
-```javascript
-ROL: BACKPROPAGATION-TRAINER
+```text
+ROLE: BACKPROPAGATION TRAINER
 
-Je past gewichten aan om het netwerk te verbeteren na incorrecte voorspellingen.
+You adjust weights to improve the network after incorrect predictions.
 
-INSTRUCTIES:
-1. Na een incorrecte voorspelling, analyseer wat er mis ging:
-   a. Welk woord was het juiste antwoord?
-   b. Welk woord werd incorrect voorspeld?
-   c. Welke neuronen in VL2 waren actief of inactief?
+INSTRUCTIONS:
+1. After an incorrect prediction, analyze what went wrong:
+   a. Which word was the correct answer?
+   b. Which word was incorrectly predicted?
+   c. Which neurons in HL2 were active or inactive?
 
-2. Kies strategisch 3-5 gewichten om aan te passen:
-   a. VERSTERK verbindingen tussen actieve VL2-neuronen en het juiste output-woord
-      (verhoog gewicht met +1 of +2)
-   b. VERZWAK verbindingen tussen actieve VL2-neuronen en het fout voorspelde output-woord
-      (verlaag gewicht met -1 of -2)
-   c. Indien nodig, pas ook gewichten aan tussen VL1 en VL2
+2. Strategically choose 3-5 weights to adjust:
+   a. STRENGTHEN connections between active HL2 neurons and the correct output word
+      (increase weight by +1 or +2)
+   b. WEAKEN connections between active HL2 neurons and the incorrectly predicted output word
+      (decrease weight by -1 or -2)
+   c. If necessary, also adjust weights between HL1 and HL2
 
-3. Kondig je aanpassingen aan:
-   "Ik pas de volgende gewichten aan:
-   - Verbinding van VL2-[X] naar [juiste woord]: van [oud] naar [nieuw]
-   - Verbinding van VL2-[Y] naar [fout woord]: van [oud] naar [nieuw]"
+3. Announce your adjustments:
+   "I am adjusting the following weights:
+   - Connection from HL2-[X] to [correct word]: from [old] to [new]
+   - Connection from HL2-[Y] to [incorrect word]: from [old] to [new]"
 
-4. Werk samen met de netwerk-beheerder om de gewichtenmatrix bij te werken
+4. Work with the network manager to update the weight matrix
 
-TIP: Focus op de meest invloedrijke verbindingen. Drastische wijzigingen kunnen de training verstoren.
+TIP: Focus on the most influential connections. Drastic changes can disrupt training.
 ```
 
-### Netwerk-beheerder
+### Network Manager
 
-```javascript
-ROL: NETWERK-BEHEERDER
+```text
+ROLE: NETWORK MANAGER
 
-Je houdt alle netwerkverbindingen en gewichten bij en zorgt voor correcte informatieoverdracht.
+You keep track of all network connections and weights and ensure correct information transfer.
 
-INSTRUCTIES:
-1. Bij aanvang:
-   a. Zorg dat alle verbindingen tussen lagen duidelijk zichtbaar zijn
-   b. Ken initiële gewichten toe aan alle verbindingen (tussen -2 en +2)
-   c. Houd een matrix bij van alle gewichten (bijv. op een groot vel papier)
+INSTRUCTIONS:
+1. At the start:
+   a. Ensure all connections between layers are clearly visible
+   b. Assign initial weights to all connections (between -2 and +2)
+   c. Keep a matrix of all weights (e.g. on a large sheet of paper)
 
-2. Tijdens training:
-   a. Assisteer neuronen bij berekeningen indien nodig
-   b. Controleer of informatie correct wordt doorgegeven
-   c. Let op activatiepatronen
+2. During training:
+   a. Assist neurons with calculations if needed
+   b. Check if information is being passed correctly
+   c. Pay attention to activation patterns
 
-3. Na backpropagation:
-   a. Update de gewichtenkaartjes op de relevante verbindingen
-   b. Werk de gewichtenmatrix bij
-   c. Kondig belangrijke veranderingen aan: "Let op, deze verbindingen zijn nu versterkt/verzwakt..."
+3. After backpropagation:
+   a. Update the weight cards on the relevant connections
+   b. Update the weight matrix
+   c. Announce important changes: "Note, these connections are now strengthened/weakened..."
 
-4. Tussen trainingsronden:
-   a. Reset alle activaties naar inactief (0)
-   b. Zorg dat alles klaar is voor de volgende ronde
+4. Between training rounds:
+   a. Reset all activations to inactive (0)
+   b. Make sure everything is ready for the next round
 
-TIP: Gebruik een tabel/matrix met rijen voor bronnen en kolommen voor doelen om alle gewichten overzichtelijk te houden.
+TIP: Use a table/matrix with rows for sources and columns for targets to keep all weights organized.
 ```
 
-### Spelleider
+### Game Leader
 
-```javascript
-ROL: SPELLEIDER
+```text
+ROLE: GAME LEADER
 
-Je begeleidt het hele proces, legt uit, houdt de tijd bij en faciliteert de discussie.
+You guide the entire process, explain, keep time and facilitate discussion.
 
-INSTRUCTIES:
-1. Begin met uitleg van het concept (5-10 min):
-   a. Wat is een neuraal netwerk en hoe werkt het?
-   b. Wat zijn de verschillende rollen?
-   c. Hoe verloopt de informatie door het netwerk?
+INSTRUCTIONS:
+1. Start with an explanation of the concept (5-10 min):
+   a. What is a neural network and how does it work?
+   b. What are the different roles?
+   c. How does information flow through the network?
 
-2. Begeleid de netwerkopbouw (5-10 min):
-   a. Help deelnemers hun positie te vinden
-   b. Zorg dat alle verbindingen worden gemaakt
-   c. Leg uit hoe gewichten werken
+2. Guide the network setup (5-10 min):
+   a. Help participants find their position
+   b. Ensure all connections are made
+   c. Explain how weights work
 
-3. Leid de trainingsfase (30-35 min):
-   a. Kondig elke nieuwe trainingszin aan
-   b. Pauzeer regelmatig om concepten uit te leggen
-   c. Stel gerichte vragen: "Waarom denken jullie dat deze voorspelling fout was?"
+3. Lead the training phase (30-35 min):
+   a. Announce each new training sentence
+   b. Pause regularly to explain concepts
+   c. Ask targeted questions: "Why do you think this prediction was wrong?"
 
-4. Leid de testfase (10-15 min):
-   a. Leg uit hoe inference verschilt van training
-   b. Test met nieuwe zinnen
-   c. Bespreek resultaten
+4. Lead the test phase (10-15 min):
+   a. Explain how inference differs from training
+   b. Test with new sentences
+   c. Discuss results
 
-5. Faciliteer afsluitende discussie (10 min):
-   a. Vraag naar inzichten van deelnemers
-   b. Leg verbanden met echte LLMs
-   c. Beantwoord vragen
+5. Facilitate closing discussion (10 min):
+   a. Ask for insights from participants
+   b. Draw connections with real LLMs
+   c. Answer questions
 
-TIP: Houd het tempo hoog, maar neem tijd voor leermomenten. Zorg voor een goede balans tussen spel en uitleg.
+TIP: Keep the pace high, but take time for learning moments. Ensure a good balance between game and explanation.
 ```
 
-## Voorbeeldzinnen voor Training en Test
+## Example Sentences for Training and Testing
 
-### Trainingszinnen (8)
+### Training Sentences (8)
 
-1. "De kat zit op de ___" (mat)
-2. "Het kind speelt met de ___" (bal)
-3. "De hond ligt op de ___" (vloer)
-4. "De plant staat op de ___" (tafel)
-5. "Het kind staat naast de ___" (deur)
-6. "De kat speelt in de ___" (tuin)
-7. "De grote hond zit onder de ___" (tafel)
-8. "Het kind leest een ___" (boek)
+1. "The cat sits on the ___" (mat)
+2. "The child plays with the ___" (ball)
+3. "The dog lies on the ___" (floor)
+4. "The plant stands on the ___" (table)
+5. "The child stands next to the ___" (door)
+6. "The cat plays in the ___" (garden)
+7. "The big dog sits under the ___" (table)
+8. "The child reads a ___" (book)
 
-### Testzinnen (4)
+### Test Sentences (4)
 
-1. "De kleine kat ligt op de ___" (mat)
-2. "Het kind staat op de ___" (stoel)
-3. "De rode auto staat naast de ___" (deur)
-4. "De hond speelt met de ___" (bal)
+1. "The small cat lies on the ___" (mat)
+2. "The child stands on the ___" (chair)
+3. "The red car stands next to the ___" (door)
+4. "The dog plays with the ___" (ball)
 
-## Spelverloop en Tijdschema (75 minuten)
+## Game Flow and Time Schedule (75 minutes)
 
-### 1. Introductie en Uitleg (10 min)
+### 1. Introduction and Explanation (10 min)
 
-* Welkom en overzicht van het spelconcept
-* Uitleg neuraal netwerk, LLMs en leerdoelen
-* Toewijzing van rollen aan deelnemers
+- Welcome and overview of the game concept
+- Explanation of neural networks, LLMs and learning objectives
+- Assignment of roles to participants
 
-### 2. Netwerkopbouw (10 min)
+### 2. Network Setup (10 min)
 
-* Positioneren van alle spelers en kaartjes
-* Leggen van verbindingen tussen lagen
-* Toekennen van initiële gewichten (willekeurig!)
+- Positioning of all players and cards
+- Establishing connections between layers
+- Assigning initial weights (randomly!)
 
-### 3. Eerste Trainingsfase (25 min)
+### 3. First Training Phase (25 min)
 
-* Trainen met 4 voorbeeldzinnen
-* Na elke zin: activatie, berekening, voorspelling, evaluatie
-* Bij fouten: backpropagation en gewichtsaanpassingen
+- Training with 4 example sentences
+- After each sentence: activation, calculation, prediction, evaluation
+- For errors: backpropagation and weight adjustments
 
-### 4. Tweede Trainingsfase (15 min)
+### 4. Second Training Phase (15 min)
 
-* Trainen met 4 meer complexe voorbeeldzinnen
-* Versterken van patronen die werken
-* Verfijnen van gewichten
+- Training with 4 more complex example sentences
+- Reinforcing patterns that work
+- Refining weights
 
-### 5. Testfase (10 min)
+### 5. Test Phase (10 min)
 
-* Testen met 4 nieuwe zinnen
-* Geen gewichtsaanpassingen meer
-* Evaluatie van prestaties
+- Testing with 4 new sentences
+- No more weight adjustments
+- Evaluation of performance
 
-### 6. Reflectie en Discussie (5 min)
+### 6. Reflection and Discussion (5 min)
 
-* Bespreken van leermomenten
-* Verbanden met echte taalmodellen
-* Vragen en antwoorden
+- Discussion of learning moments
+- Connections to real language models
+- Questions and answers
 
-## Tips voor Facilitators
+## Tips for Facilitators
 
-1. **Voorbereiding**:
+1. **Preparation**:
+    - Test the game beforehand with a small group
+    - Prepare the physical space so that the network diagram is clearly visible
+    - Create color-coded connections for better visualization
 
-    * Test het spel vooraf met een kleine groep
-    * Bereid de fysieke ruimte zo in dat het netwerkdiagram duidelijk zichtbaar is
-    * Maak kleurgecodeerde verbindingen voor betere visualisatie
+2. **During the Game**:
+    - Start with simple examples
+    - Take regular breaks to clarify concepts
+    - Help with calculations where needed
+    - Involve all participants through targeted questions
 
-2. **Tijdens het Spel**:
+3. **Simplifications for Beginners**:
+    - Start with smaller input and output vocabularies (e.g. 10 input, 5 output)
+    - Begin with preset weights that work for the first sentence
+    - Simplify the backpropagation process
 
-    * Begin met éénvoudige voorbeelden
-    * Leg regelmatig pauzes in om concepten te verduidelijken
-    * Help bij berekeningen waar nodig
-    * Betrek alle deelnemers door gerichte vragen te stellen
+4. **Challenges for Advanced Players**:
+    - Add more complex sentences with multiple subjects
+    - Introduce a validation set to demonstrate overfitting
+    - Let players create their own training examples
 
-3. **Simplificaties voor Beginners**:
+5. **Conclusion**:
+    - Summarize the key learning points
+    - Compare with the scale of real LLMs (billions of parameters)
+    - Point out the limitations of the model and how real LLMs work differently
 
-    * Begin met kleinere input en output vocabulaires (bijv. 10 input, 5 output)
-    * Start met vooraf ingestelde gewichten die werken voor de eerste zin
-    * Vereenvoudig het backpropagation-proces
+## Technical Specification
 
-4. **Uitdagingen voor Gevorderden**:
-
-    * Voeg complexere zinnen toe met meerdere subjecten
-    * Introduceer een validatieset om overfitting te demonstreren
-    * Laat spelers zelf nieuwe trainingsvoorbeelden verzinnen
-
-5. **Afsluiting**:
-
-    * Vat de belangrijkste leerpunten samen
-    * Vergelijk met de schaal van echte LLMs (miljarden parameters)
-    * Wijs op de beperkingen van het model en hoe echte LLMs anders werken
-
-## Technische Specificatie
-
-Het geïmplementeerde model is een discrete feed-forward MLP met binaire stap-activatiefunctie (Heaviside),
-gestructureerd als 20-5-5-10 architectuur zonder bias-termen die directe, heuristische gewichtsaanpassingen gebruikt in
-plaats van gradiëntgebaseerde backpropagation. Conceptueel volgt het Rosenblatt's perceptron-principes (1958) met
-McCulloch-Pitts neuronen en representeert tekst via een bag-of-words benadering zonder sequentiële informatie. De
-simplistische gewichtsaanpassing omzeilt differentieerbare functies en stocastische gradiëntafdaling die in moderne
-netwerken gebruikelijk zijn (Rumelhart et al., 1986). Cruciale limitaties omvatten het ontbreken van contextuele
-verbanden (versus Transformers; Vaswani et al., 2017), parameter-efficiënte backpropagation, en regularisatietechnieken
-zoals gewichtsverval of dropout (Srivastava et al., 2014), wat het model gevoelig maakt voor overfitting zoals
-gedemonstreerd in de simulatieresultaten. Voor moderne NLP-implementaties, zie Jurafsky & Martin (web.stanford.edu/~
-jurafsky/slp3), en voor visuele neurale netwerkdemonstraties: playground.tensorflow.org.
+The implemented model is a discrete feed-forward Multi-Layer Perceptron (MLP) with binary step-activation function (
+Heaviside), structured as a 20-5-5-10 architecture without bias terms that uses direct, heuristic weight adjustments
+instead of gradient-based backpropagation. Conceptually, it follows Rosenblatt's perceptron principles (1958) with
+McCulloch-Pitts neurons and represents text via a bag-of-words approach without sequential information. The simplistic
+weight adjustment bypasses differentiable functions and stochastic gradient descent that are common in modern networks (
+Rumelhart et al., 1986). Crucial limitations include the absence of contextual connections (versus Transformers; Vaswani
+et al., 2017), parameter-efficient backpropagation, and regularization techniques such as weight decay or dropout (
+Srivastava et al., 2014), which makes the model susceptible to overfitting as demonstrated in the simulation results.
+For modern NLP implementations, see Jurafsky & Martin (<https://web.stanford.edu/~jurafsky/slp3>), and for visual neural
+network demonstrations: <https://playground.tensorflow.org>.
