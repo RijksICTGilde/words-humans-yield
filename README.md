@@ -1,12 +1,19 @@
 # Words Humans Yield game
 
-An interactive workshop where participants play the role of a Large Language Model (LLM) to learn how AI language models
-work. Players collectively form a neural network that predicts text, giving them insight into how neural networks
-function, the difference between training and inference, and how language models learn from data.
+An interactive workshop where participants physically embody a neural network to learn how language models work. This
+educational game demonstrates neural network concepts through a simplified "human neural network" that predicts words,
+with participants playing neurons, connections, and various network components. Includes complete workshop materials and
+a Python simulation to test and visualize the learning process.
+
+_The name "Words Humans Yield" is a playful nod to [WHY2025](https://why2025.org/) (What Hackers Yearn), the
+international non-profit outdoor hacker camp/conference in The Netherlands where this workshop will be presented._
 
 [See the whole game here](game.md).
 
 ## Simulation
+
+This simulation is to illustrate the process of the game. It's meant for facilitators, to understand the workings of
+the game better.
 
 ```sh
 uv run game.py
